@@ -8,3 +8,10 @@
 table {
   font-size: 2rem;
 }
+
+#book-list > div{
+  display: flex;
+  flex-direction: row;
+  width: 80vw;
+  justify-content: space-between;
+}
