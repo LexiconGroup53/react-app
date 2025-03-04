@@ -1,29 +1,26 @@
 import { useState } from 'react';
 import './App.css'
-import { Table } from './components/Table';
-import { Cart } from './components/Cart';
 import { Catalogue } from './pages/Catalogue';
+import { Home } from './pages/Home';
+import { Search } from './pages/Search';
+import { Switch } from './components/Switch';
+import { NavBar } from './components/NavBar';
 
 function App() {
-  const data = [{id: 1, name: "Pernilla", age: 23}, {id: 2, name: "Agneta", age: 27}];
-  // let choice = true;
-  const [choice, setChoice] = useState(false);
-  const [buy, setBuy] = useState([]);
+
+  const [choice, setChoice] = useState(3);
+  const [collection, setCollection] = useState([]);
   const [illustration, setIllustration] = useState(false);
 
-  const handleFlip = () => {
-    setChoice(!choice);
-  }
-
-  const handleFlipVers = () => {
-    setIllustration(!illustration);
-  }
+  
   return (
     <>
-      {choice ? <Table data={data} addToCart={setBuy}/> : <Cart buy={buy}/>}  
-      <button onClick={handleFlip}>Flip</button> 
-      <button onClick={handleFlipVers}>Flip version</button>     
-      <Catalogue choice={choice} />
+    <NavBar setChoice={setChoice}/>
+    <Switch choice={choice}>
+        <Home value={1}/>
+        <Catalogue value={2} collection={collection} setCollection={setCollection}/>
+        <Search value={3} collection={collection} setCollection={setCollection}/>
+    </Switch>
     </>
   )
 }

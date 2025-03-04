@@ -1,4 +1,4 @@
-export const BookList = ({data}) => {
+export const BookList = ({data, refAction}) => {
 
    
     return (
@@ -9,6 +9,7 @@ export const BookList = ({data}) => {
                         <div>{item.publisher}</div>
                         <div>{item.title}</div>
                         <div>{item.creator}</div>
+                        <button onClick={() => refAction(item)}>Add</button>
                     </div>
                 )
             })}
