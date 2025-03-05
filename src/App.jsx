@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css'
 import { Catalogue } from './pages/Catalogue';
 import { Home } from './pages/Home';
@@ -12,7 +12,11 @@ function App() {
   const [collection, setCollection] = useState([]);
   const [illustration, setIllustration] = useState(false);
 
-  
+  useEffect(() => {
+    let persisted = sessionStorage.getItem("persistedCollection");
+    if(persisted) setCollection(JSON.parse(persisted));
+  }, []);
+
   return (
     <>
     <NavBar setChoice={setChoice}/>

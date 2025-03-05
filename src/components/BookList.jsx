@@ -9,7 +9,8 @@ export const BookList = ({data, refAction}) => {
                         <div>{item.publisher}</div>
                         <div>{item.title}</div>
                         <div>{item.creator}</div>
-                        <button onClick={() => refAction(item)}>Add</button>
+                        {refAction !== undefined && refAction.map(r => <button onClick={() => r.action(item)}>{r.info}</button>)}
+                        
                     </div>
                 )
             })}

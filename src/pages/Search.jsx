@@ -27,9 +27,16 @@ export const Search = ({collection, setCollection}) => {
             setSearchString(newSearch);
         }
 
-    const addReference = (item) => {
-        setCollection([...collection, item]);
-    }
+    const refAction = [
+        {
+        action: (item) => {
+            let newCollection = [...collection, item];
+            setCollection(newCollection);
+            sessionStorage.setItem("persistedCollection", JSON.stringify(newCollection));
+        },
+        info: "Add"
+        }
+    ]
 
     return (
         <div>
@@ -48,7 +55,7 @@ export const Search = ({collection, setCollection}) => {
                 <button onClick={handleSearch}>Search</button>
                 <p>{errorMessage ? "At least one value must be submitted" : ""}</p>
             </div>
-            {posts !== null && <BookList data={posts} refAction={addReference}/>}
+            {posts !== null && <BookList data={posts} refAction={refAction}/>}
         </div>
     )
 }
