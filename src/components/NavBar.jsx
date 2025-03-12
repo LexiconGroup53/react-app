@@ -1,10 +1,12 @@
-export const NavBar = ({setChoice}) => {
+import { NavLink } from 'react-router';
+
+export const NavBar = () => {
     return (
-            <div className="site-navigation">
+            <div className="site-navigation" >
                 <ul>
-                    <li onClick={() => setChoice(1)}>Home</li>
-                    <li onClick={() => setChoice(2)}>Catalogue</li>
-                    <li onClick={() => setChoice(3)}>Search</li>
+                    <li> <NavLink to="/">Home</NavLink></li>
+                    <li> <NavLink to="catalogue">Catalogue</NavLink></li>
+                    <li> <NavLink to="search">Search</NavLink></li>
                 </ul>
             </div>
     )

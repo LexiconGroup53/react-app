@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
-import './App.css'
+import './App.css';
 import { Catalogue } from './pages/Catalogue';
 import { Home } from './pages/Home';
 import { Search } from './pages/Search';
-import { Switch } from './components/Switch';
-import { NavBar } from './components/NavBar';
+import { Route, Routes, BrowserRouter } from 'react-router';
+import { Layout } from './components/Layout';
 
 function App() {
 
-  const [choice, setChoice] = useState(3);
+
   const [collection, setCollection] = useState([]);
-  const [illustration, setIllustration] = useState(false);
 
   useEffect(() => {
     let persisted = sessionStorage.getItem("persistedCollection");
@@ -18,14 +17,15 @@ function App() {
   }, []);
 
   return (
-    <>
-    <NavBar setChoice={setChoice}/>
-    <Switch choice={choice}>
-        <Home value={1}/>
-        <Catalogue value={2} collection={collection} setCollection={setCollection}/>
-        <Search value={3} collection={collection} setCollection={setCollection}/>
-    </Switch>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>      
+            <Route path="/" element={<Home />} />
+            <Route path="catalogue" element={<Catalogue collection={collection} setCollection={setCollection}/>} />
+            <Route path="search" element={<Search collection={collection} setCollection={setCollection}/>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
