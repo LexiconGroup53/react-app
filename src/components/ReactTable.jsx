@@ -1,34 +1,59 @@
-import { useState } from "react"
+import { useState } from "react";
+import {getCoreRowModel, useReactTable, flexRender} from "@tanstack/react-table";
 
-/* export const ReactTable = ({collection}) => {
+export const ReactTable = ({collection}) => {
     const [data, setData] = useState(collection);
-
-    const table = useReactTable();
-
     const columns = [
         {
             accessorKey: "publisher",
             header: "Publisher",
-            cell: (props) => <div>{props.getValue}</div>
+            cell: (props) => <p>{props.getValue()}</p>
         },
         {
             accessorKey: "title",
             header: "Title",
-            cell: (props) => <div>{props.getValue}</div>
+            cell: (props) => <p>{props.getValue()}</p>
         },
         {
             accessorKey: "creator",
             header: "Author",
-            cell: (props) => <div>{props.getValue}</div>
+            cell: (props) => <p>{props.getValue()}</p>
         },
     ]
 
-    return (
-        <div>
-            {table.getHeaderGroups().map(header => {
+    const table = useReactTable({
+        data,
+        columns,
+        getCoreRowModel: getCoreRowModel(),
+});
 
-            })}
-            {table.getVisisbleCells().map()}
-        </div>
+    
+
+    return (
+        <table>
+            <thead>
+            {table.getHeaderGroups().map(headerGroup => 
+                <tr key={headerGroup.id}>
+               {headerGroup.headers.map(header =>
+                        <th key={header.id}>
+                            {header.column.columnDef.header}
+                        </th>
+                    )}
+                </tr>
+            )}
+            </thead>
+            <tbody>
+                {table.getRowModel().rows.map(row => 
+                    <tr key={row.id}>
+                        {row.getVisibleCells().map(cell =>
+                            <td key={cell.id}>
+                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                            </td>
+                        )}
+                    </tr>
+                )}
+            </tbody>
+        
+        </table>
     )
-} */
+}

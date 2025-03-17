@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import axios from "axios";
 import { BookList } from "../components/BookList";
 import { AddRef } from "../components/AddRef";
+import { ReactTable } from "../components/ReactTable";
 
 export const Catalogue = ({collection, setCollection}) => {
 
@@ -18,7 +19,7 @@ export const Catalogue = ({collection, setCollection}) => {
             <h1>Catalogue</h1>
             <AddRef collection={collection} setCollection={setCollection}/>
             {collection !== null && <BookList data={collection} refAction={refAction}/>}
-        
+            {collection !== null && <ReactTable collection={collection} />}
         </div>
     )
 }
