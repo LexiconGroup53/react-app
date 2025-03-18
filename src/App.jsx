@@ -6,8 +6,8 @@ import { Search } from './pages/Search';
 import { Route, Routes, BrowserRouter } from 'react-router';
 import { Layout } from './components/Layout';
 
-function App() {
 
+function App() {
 
   const [collection, setCollection] = useState([]);
 
@@ -17,15 +17,17 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>      
-            <Route path="/" element={<Home />} />
-            <Route path="catalogue" element={<Catalogue collection={collection} setCollection={setCollection}/>} />
-            <Route path="search" element={<Search collection={collection} setCollection={setCollection}/>} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Layout/>}>      
+              <Route path="/" element={<Home />} />
+              <Route path="catalogue" element={<Catalogue collection={collection} setCollection={setCollection}/>} />
+              <Route path="search" element={<Search collection={collection} setCollection={setCollection}/>} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+
   )
 }
 

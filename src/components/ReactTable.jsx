@@ -32,7 +32,7 @@ export const ReactTable = ({collection}) => {
     return (
         <table>
             <thead>
-            {table.getHeaderGroups().map(headerGroup => 
+            {table.getHeaderGroups().map(headerGroup =>
                 <tr key={headerGroup.id}>
                {headerGroup.headers.map(header =>
                         <th key={header.id}>
