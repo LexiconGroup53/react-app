@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import './App.css';
 import { Catalogue } from './pages/Catalogue';
 import { Home } from './pages/Home';
@@ -9,12 +9,12 @@ import { Layout } from './components/Layout';
 
 function App() {
 
-  const [collection, setCollection] = useState([]);
+ // const [collection, setCollection] = useState([]);
 
-  useEffect(() => {
+/*   useEffect(() => {
     let persisted = sessionStorage.getItem("persistedCollection");
     if(persisted) setCollection(JSON.parse(persisted));
-  }, []);
+  }, []); */
 
   return (
     
@@ -22,8 +22,8 @@ function App() {
         <Routes>
           <Route element={<Layout/>}>      
               <Route path="/" element={<Home />} />
-              <Route path="catalogue" element={<Catalogue collection={collection} setCollection={setCollection}/>} />
-              <Route path="search" element={<Search collection={collection} setCollection={setCollection}/>} />
+              <Route path="catalogue" element={<Catalogue />} />
+              <Route path="search" element={<Search />} />
           </Route>
         </Routes>
       </BrowserRouter>

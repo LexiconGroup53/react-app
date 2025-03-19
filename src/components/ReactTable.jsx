@@ -1,8 +1,11 @@
 import { useState } from "react";
 import {getCoreRowModel, useReactTable, flexRender} from "@tanstack/react-table";
+import { useAtom } from "jotai";
+import { collectionAtom } from "../atoms/collectionAtom";
 
-export const ReactTable = ({collection}) => {
-    const [data, setData] = useState(collection);
+export const ReactTable = () => {
+    const [collection, setCollection] = useAtom(collectionAtom);
+    const [data, setData] = [collection, setCollection];
     const columns = [
         {
             accessorKey: "publisher",

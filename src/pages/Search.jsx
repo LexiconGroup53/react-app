@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react"
 import axios from "axios";
 import { BookList } from "../components/BookList";
+import { useAtom } from "jotai";
+import { collectionAtom } from "../atoms/collectionAtom";
 
-export const Search = ({collection, setCollection}) => {
+export const Search = () => {
     const [posts, setPosts] = useState(null);
     const [author, setAuthor] = useState('');
     const [title, setTitle] = useState('');
     const [errorMessage, setErrorMessage] = useState(false);
-    const [searchString, setSearchString] = useState("http://libris.kb.se/xsearch?query=W.V.+Quine&format=json")
+    const [searchString, setSearchString] = useState("http://libris.kb.se/xsearch?query=W.V.+Quine&format=json");
+    const [collection, setCollection] = useAtom(collectionAtom);
 
     useEffect(() => {
         axios.get(searchString)
@@ -32,7 +35,7 @@ export const Search = ({collection, setCollection}) => {
         action: (item) => {
             let newCollection = [...collection, item];
             setCollection(newCollection);
-            sessionStorage.setItem("persistedCollection", JSON.stringify(newCollection));
+            //sessionStorage.setItem("persistedCollection", JSON.stringify(newCollection));
         },
         info: "Add"
         }

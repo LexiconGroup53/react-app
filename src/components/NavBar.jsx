@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router';
+import reactIcon from '../assets/react.svg';
 
 export const NavBar = ({setTheme, theme}) => {
     return (
@@ -9,6 +10,8 @@ export const NavBar = ({setTheme, theme}) => {
                     <li> <NavLink to="search">Search</NavLink></li>
                 </ul>
                 <button onClick={() => setTheme( theme === 'light' ? 'dark' : 'light')}>{theme === 'light' ? 'dark' : 'light'}</button>
+                <img src="img/vite.svg" />
+                <img src={reactIcon} />
             </div>
     )
 }
