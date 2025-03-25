@@ -5,10 +5,11 @@ import { Home } from './pages/Home';
 import { Search } from './pages/Search';
 import { Route, Routes, BrowserRouter } from 'react-router';
 import { Layout } from './components/Layout';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 
 function App() {
-
+  const queryClient =  new QueryClient();
  // const [collection, setCollection] = useState([]);
 
 /*   useEffect(() => {
@@ -17,8 +18,8 @@ function App() {
   }, []); */
 
   return (
-    
-      <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter >
         <Routes>
           <Route element={<Layout/>}>      
               <Route path="/" element={<Home />} />
@@ -27,7 +28,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-
+      </QueryClientProvider>
   )
 }
 

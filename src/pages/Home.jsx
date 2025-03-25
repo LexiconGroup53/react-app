@@ -2,9 +2,10 @@ import { Drag } from "../components/Drag"
 import { useContext } from "react"
 import { ThemeContext } from "../contexts/ThemeContext"
 
+
 export const Home = () => {
     const theme = useContext(ThemeContext);
-
+    
 
     return (
         <>

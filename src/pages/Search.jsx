@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import axios from "axios";
 import { BookList } from "../components/BookList";
 import { useCollectionStore } from "../stores/collectionStore";
+import { useAddReference } from "../queries/refQueries";
 //import { useAtom } from "jotai";
 //import { collectionAtom } from "../atoms/collectionAtom";
 
@@ -10,9 +11,11 @@ export const Search = () => {
     const [author, setAuthor] = useState('');
     const [title, setTitle] = useState('');
     const [errorMessage, setErrorMessage] = useState(false);
-    const [searchString, setSearchString] = useState("http://libris.kb.se/xsearch?query=W.V.+Quine&format=json");
+    const [searchString, setSearchString] = useState("/libris/W.V.+Quine&format=json");
     // const [collection, setCollection] = useAtom(collectionAtom);
     const addRef = useCollectionStore(state => state.addRef);
+
+    const addReference = useAddReference();
 
     useEffect(() => {
         axios.get(searchString)
@@ -20,7 +23,7 @@ export const Search = () => {
     }, [searchString]);
 
     const handleSearch = () => {
-            let newSearch= "http://libris.kb.se/xsearch?query=";
+            let newSearch= "/libris/";
             if(author === '' && title === '') {
                 setErrorMessage(true);
                 return;
@@ -38,7 +41,7 @@ export const Search = () => {
             //let newCollection = [...collection, item];
             //setCollection(newCollection);
 
-            addRef(item);
+            addReference.mutate(item);
 
             //sessionStorage.setItem("persistedCollection", JSON.stringify(newCollection));
         },

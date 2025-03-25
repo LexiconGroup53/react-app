@@ -9,3 +9,9 @@ export const useCollectionStore =
     {name: "collection-store"}
 
 )
+
+export const useCollectionStore2 = 
+    create((set) => ({    }))
+
+export const useCollectionStore3 = 
+    create(persist((set) => ({ })), {name: "collection-store"})

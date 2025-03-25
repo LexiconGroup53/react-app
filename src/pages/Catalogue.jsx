@@ -4,9 +4,12 @@ import { BookList } from "../components/BookList";
 import { AddRef } from "../components/AddRef";
 import { ReactTable } from "../components/ReactTable";
 import { useCollectionStore } from "../stores/collectionStore";
-
+import { useGetAllReferences } from "../queries/refQueries";
 
 export const Catalogue = () => {
+
+    const refQuery = useGetAllReferences();
+
    // const [collection, setCollection] = useAtom(collectionAtom);
     const {collection, addRef} = useCollectionStore();
     const refAction = [
@@ -21,8 +24,8 @@ export const Catalogue = () => {
             
             <h1>Catalogue</h1>
             {/* <AddRef collection={collection} setCollection={setCollection}/> */}
-            {collection !== null && <BookList data={collection} refAction={refAction}/>}
-            {collection !== null && <ReactTable data={collection} />}
+            {refQuery.data !== undefined && <BookList data={refQuery.data} refAction={refAction}/>}
+            {refQuery.data !== undefined && <ReactTable data={refQuery.data} />}
         </div>
     )
 }
