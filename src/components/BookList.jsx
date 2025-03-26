@@ -1,4 +1,4 @@
-
+import { Button } from "@mui/material"
 
 export const BookList = ({data, refAction}) => {
 
@@ -12,7 +12,7 @@ export const BookList = ({data, refAction}) => {
                         <div>{item.publisher}</div>
                         <div>{item.title}</div>
                         <div>{item.creator}</div>
-                        {refAction !== undefined && refAction.map(r => <button onClick={() => r.action(item)}>{r.info}</button>)}
+                        {refAction !== undefined && refAction.map(r => <Button variant="contained" color="success" onClick={() => r.action(item)}>{r.info}</Button>)}
                         
                     </div>
                 )
